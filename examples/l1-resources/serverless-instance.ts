@@ -5,8 +5,8 @@ import { CfnServerlessInstance,  ServerlessInstanceProviderSettingsProviderName}
 interface AtlasStackProps {
   readonly projId: string;
   readonly profile: string;
-  readonly continuousBackupEnabled: string;
-  readonly terminationProtectionEnabled: string;
+  readonly continuousBackupEnabled: boolean;
+  readonly terminationProtectionEnabled: boolean;
 }
 
 export class CdkTestingStack extends cdk.Stack {
@@ -17,7 +17,7 @@ export class CdkTestingStack extends cdk.Stack {
 
     const myServerlessInstance = new CfnServerlessInstance(this, 'MyServerlessInstance', {
       projectId: atlasProps.projId,
-      profile:  atlasProps.profile,
+      profile: atlasProps.profile,
       continuousBackupEnabled: atlasProps.continuousBackupEnabled,
       providerSettings: {
         providerName: ServerlessInstanceProviderSettingsProviderName.SERVERLESS
